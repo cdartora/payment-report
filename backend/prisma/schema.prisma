@@ -11,17 +11,30 @@ datasource db {
 }
 
 model User {
+  id       String @id @default(cuid())
+  name     String
+  email    String
+  password String
+
+  @@map("Users")
+}
+
+model Client {
   id          String        @id @default(cuid())
   name        String
   Appointment Appointment[]
+
+  @@map("Clients")
 }
 
 model Appointment {
   id           String   @id @default(cuid())
   clientId     String
-  client       User     @relation(fields: [clientId], references: [id])
+  client       Client   @relation(fields: [clientId], references: [id])
   value        String
   installments Int
   createdAt    DateTime @default(now())
   isPaid       Boolean
+
+  @@map("Appointments")
 }
