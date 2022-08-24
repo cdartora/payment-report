@@ -6,6 +6,7 @@ import * as dotenv from "dotenv";
 
 import login from "./login/route";
 import errorMiddleware from "./middlewares/error";
+import appointiment from "./appointments/route";
 
 dotenv.config()
 
@@ -15,6 +16,7 @@ app.use(cors())
 app.use(bodyParser.json())
 
 app.use("/login", login)
+app.use("/appointment", appointiment)
 
 app.use(errorMiddleware)
 
