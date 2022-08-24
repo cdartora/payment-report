@@ -15,12 +15,16 @@ model User {
   name     String
   email    String
   password String
+
+  @@map("Users")
 }
 
 model Client {
   id          String        @id @default(cuid())
   name        String
   Appointment Appointment[]
+
+  @@map("Clients")
 }
 
 model Appointment {
@@ -31,4 +35,6 @@ model Appointment {
   installments Int
   createdAt    DateTime @default(now())
   isPaid       Boolean
+
+  @@map("Appointments")
 }
