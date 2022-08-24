@@ -10,8 +10,8 @@ export const createToken = (user: User) => {
   return token;
 }
 
-export const decodeToken = (token: string) => {
+export const decodeToken = (token: string): User => {
   const data = jwt.verify(token, SECRET);
 
-  return data;
+  return data as User;
 }
