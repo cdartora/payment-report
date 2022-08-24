@@ -1,26 +1,30 @@
 import { NextFunction, Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
+import { prisma } from "../prisma";
 import BaseError from "../utils/baseError";
+import bcrypt from "bcrypt";
+import { decodeToken } from "../utils/token";
 
-const { decodedToken } = require('../auth/token');
-const { User } = require('../database/models');
-
-const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
+export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   const { authorization } = req.headers;
 
   const token = authorization;
 
-  const decoded = await decodedToken(token);
+  if (!token) throw BaseError(StatusCodes.UNAUTHORIZED, "token not found")
+
+  const decoded = decodeToken(token);
 
   if (!decoded) {
     throw BaseError(StatusCodes.UNAUTHORIZED, "invalid token")
   }
 
-  const user = await User.findByPk(decoded.id);
+  const user = await prisma.user.findFirstOrThrow({
+    where: { id: decoded.id }
+  });
+
+  if (bcrypt.compareSync(decoded.password, user.password) || decoded.email !== user.email) {
+    throw BaseError(StatusCodes.UNAUTHORIZED, "invalid token")
+  }
 
   next();
 };
-
-module.exports = {
-  authMiddleware,
-}; 
