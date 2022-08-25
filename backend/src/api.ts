@@ -1,23 +1,27 @@
-import express from "express";
+import express from 'express';
 import bodyParser from 'body-parser';
-import cors from "cors";
-import "express-async-errors"
-import * as dotenv from "dotenv";
+import cors from 'cors';
+import 'express-async-errors';
+import * as dotenv from 'dotenv';
 
-import login from "./login/route";
-import errorMiddleware from "./middlewares/error";
-import appointiment from "./appointments/route";
+import login from './login/route';
+import appointiment from './appointments/route';
+import user from './users/route';
+import client from './clients/route';
+import errorMiddleware from './middlewares/error';
 
-dotenv.config()
+dotenv.config();
 
-const app = express()
+const app = express();
 
-app.use(cors())
-app.use(bodyParser.json())
+app.use(cors());
+app.use(bodyParser.json());
 
-app.use("/login", login)
-app.use("/appointment", appointiment)
+app.use("/login", login);
+app.use("/appointment", appointiment);
+app.use("/user", user);
+app.use("/client", client);
 
-app.use(errorMiddleware)
+app.use(errorMiddleware);
 
 export default app;

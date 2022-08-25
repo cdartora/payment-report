@@ -12,7 +12,19 @@ const createAppointment = Joi.object({
   isPaid: Joi.bool().required(),
 });
 
+const createUser = Joi.object({
+  name: Joi.string().required(),
+  email: Joi.string().email().required(),
+  password: Joi.string().required(),
+});
+
+const createClient = Joi.object({
+  name: Joi.string().required(),
+});
+
 export default {
   login,
-  createAppointment
+  createAppointment,
+  createUser,
+  createClient
 }
