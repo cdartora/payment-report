@@ -39,7 +39,7 @@ async function main() {
   await prisma.appointment.create({
     data: {
       clientId: joao.id,
-      value: '1122,00',
+      value: 1122.00,
       installments: 5,
       isPaid: false
     }
@@ -48,7 +48,7 @@ async function main() {
   await prisma.appointment.create({
     data: {
       clientId: maria.id,
-      value: '5013,00',
+      value: 5013.00,
       installments: 10,
       isPaid: false
     }
@@ -57,7 +57,7 @@ async function main() {
   await prisma.appointment.create({
     data: {
       clientId: robson.id,
-      value: '502,00',
+      value: 502.00,
       installments: 3,
       isPaid: false
     }
