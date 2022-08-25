@@ -9,7 +9,8 @@
     "prestart": "npm run build",
     "dev": "nodemon --watch \"./src/**\" ./src/server.ts",
     "build": "npx tsc",
-    "migrate": "npx prisma migrate dev --name init"
+    "migrate": "npx prisma migrate dev --name init",
+    "lint": "eslint ./src --ext .ts"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
@@ -20,6 +21,8 @@
     "@types/bcrypt": "^5.0.0",
     "@types/cors": "^2.8.12",
     "@types/jsonwebtoken": "^8.5.9",
+    "@typescript-eslint/eslint-plugin": "^5.35.1",
+    "@typescript-eslint/parser": "^5.35.1",
     "nodemon": "^2.0.19",
     "prisma": "^4.2.1",
     "ts-node": "^10.9.1",
