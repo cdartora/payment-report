@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -31,7 +28,7 @@ model Appointment {
   id           String   @id @default(cuid())
   clientId     String
   client       Client   @relation(fields: [clientId], references: [id])
-  value        String
+  value        Decimal
   installments Int
   createdAt    DateTime @default(now())
   isPaid       Boolean
