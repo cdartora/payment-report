@@ -18,11 +18,11 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
     throw BaseError(StatusCodes.UNAUTHORIZED, "invalid token")
   }
 
-  const user = await prisma.user.findFirstOrThrow({
+  const user = await prisma.user.findFirst({
     where: { id: decoded.id }
   });
 
-  if (bcrypt.compareSync(decoded.password, user.password) || decoded.email !== user.email) {
+  if (!user || bcrypt.compareSync(decoded.password, user.password) || decoded.email !== user.email) {
     throw BaseError(StatusCodes.UNAUTHORIZED, "invalid token")
   }
 
