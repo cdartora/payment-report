@@ -4,11 +4,11 @@ import { authMiddleware } from "../middlewares/auth";
 import validateJoi from "../middlewares/validation";
 import schemas from "../schemas"
 
-const appointiment = Router()
+const appointment = Router()
 
-appointiment.get("/", authMiddleware, controller.getAll)
-appointiment.post("/", authMiddleware, validateJoi(schemas.createAppointment), controller.create)
-appointiment.put("/:id", validateJoi(schemas.createAppointment), controller.update)
-appointiment.delete("/:id", controller.destroy)
+appointment.get("/", authMiddleware, controller.getAll)
+appointment.post("/", authMiddleware, validateJoi(schemas.createAppointment), controller.create)
+appointment.put("/:id", validateJoi(schemas.createAppointment), controller.update)
+appointment.delete("/:id", controller.destroy)
 
-export default appointiment;
+export default appointment;
