@@ -5,9 +5,13 @@ import service from "./service";
 const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
-  const token = await service.login(email, password);
+  const user = await service.login(email, password);
 
-  return res.status(StatusCodes.OK).send({ token })
+  return res.status(StatusCodes.OK).send(user)
 }
 
-export default { login };
+const validate = async (req: Request, res: Response) => {
+  res.status(StatusCodes.OK).send({ message: "token validado" })
+};
+
+export default { login, validate };
