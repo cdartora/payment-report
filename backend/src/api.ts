@@ -5,7 +5,7 @@ import 'express-async-errors';
 import * as dotenv from 'dotenv';
 
 import login from './login/route';
-import appointiment from './appointments/route';
+import appointment from './appointments/route';
 import user from './users/route';
 import client from './clients/route';
 import errorMiddleware from './middlewares/error';
@@ -18,7 +18,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use("/login", login);
-app.use("/appointment", appointiment);
+app.use("/appointment", appointment);
 app.use("/user", user);
 app.use("/client", client);
 
