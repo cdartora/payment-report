@@ -16,9 +16,15 @@ const login = async (email: string, password: string) => {
     throw BaseError(StatusCodes.BAD_REQUEST, "invalid credentials")
   }
 
+  const userWithoutPassword = {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+  }
+
   const token = createToken(user as User);
 
-  return token;
+  return { ...userWithoutPassword, token };
 };
 
 export default { login };
