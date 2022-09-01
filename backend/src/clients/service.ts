@@ -23,6 +23,9 @@ const update = async (client: Client, id: string) => {
 }
 
 const destroy = async (id: string) => {
+  await prisma.appointment.deleteMany({
+    where: { clientId: id }
+  })
   await prisma.client.delete({
     where: { id }
   });

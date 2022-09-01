@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {Listbox} from '@headlessui/react';
-import {CaretDown} from 'phosphor-react';
+import {CaretDown, DotsThreeVertical} from 'phosphor-react';
 import type {Client} from '../types/types';
+import ClientLi from './ClientLi';
 
 type ListProps = {
 	clients: Client[] | undefined;
@@ -9,10 +10,10 @@ type ListProps = {
 	changeClient: (value: Client) => void;
 };
 
-export default function ClientListbox({clients, client, changeClient}: ListProps) {
+export default function ClientInput({clients, client, changeClient}: ListProps) {
 	return (
 		<Listbox value={client} onChange={changeClient}>
-			<div className='relative mt-1'>
+			<div className='relative mt-1 z-30'>
 				<Listbox.Button
 					className='rounded-md border bg-white shadow p-3 text-text flex justify-between w-full items-center'
 				>
@@ -28,13 +29,7 @@ export default function ClientListbox({clients, client, changeClient}: ListProps
 					{
 						clients?.map((client: Client) => (
 
-							<Listbox.Option
-								className='hover:bg-gray-100 w-full px-3 py-2 rounded-md'
-								key={client.id}
-								value={client}
-							>
-								{client.name}
-							</Listbox.Option>
+							<ClientLi key={client.id} client={client} />
 
 						))
 					}

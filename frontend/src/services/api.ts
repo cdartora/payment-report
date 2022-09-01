@@ -29,6 +29,14 @@ export const createClient = async (endpoint: string, body: Client, token: string
   await api.post(endpoint, body, { headers: { Authorization: token } });
 }
 
+export const deleteClient = async (endpoint: string, token: string) => {
+  await api.delete(endpoint, { headers: { Authorization: token } });
+}
+
+export const updateClient = async (endpoint: string, body: Client, token: string) => {
+  await api.put(endpoint, body, { headers: { Authorization: token } });
+}
+
 export const requestAppointments = async (endpoint: string, token: string): Promise<Appointment[]> => {
   const { data } = await api.get(endpoint, { headers: { Authorization: token } });
   return data;

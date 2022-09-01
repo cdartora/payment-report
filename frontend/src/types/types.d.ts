@@ -40,12 +40,26 @@ export type Payment = {
 
 export type Payments = Record<string, Payment[]>;
 
-export type Context = {
+export type AppointmentContextType = {
 	appointments?: Payments;
-	getAppointments: () => void;
+	getAppointments: () => Promise<void>;
 	nextMonth: () => void;
 	previousMonth: () => void;
 	actualMonth: {date: Date; string: string};
+};
+
+export type FormContextType = {
+	changeValue: (event: ChangeEvent<HTMLInputElement>) => void;
+	validateCredentials: () => boolean;
+	changeInstallments: (value: number) => void;
+	changeClient: (value: Client) => void;
+	resetInputs: () => void;
+	clients: Client[] | undefined;
+	setClients: (Clients: Client[]) => void;
+	value: number | undefined;
+	installments: number | undefined;
+	client: Client | undefined;
+	getClients: (token: string) => Promise<void>;
 };
 
 export type UserLocalStorage = {
