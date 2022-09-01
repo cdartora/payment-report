@@ -28,7 +28,12 @@ function AppointmentsProvider({children}: React.PropsWithChildren) {
 	}
 
 	function changeValue(event: ChangeEvent<HTMLInputElement>) {
-		setValue(Number(event.target.value));
+		const price = Number(event.target.value);
+		if (price || price === 0) {
+			console.log('trocou');
+
+			setValue(price);
+		}
 	}
 
 	function validateCredentials() {

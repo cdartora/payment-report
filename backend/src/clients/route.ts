@@ -8,7 +8,7 @@ const client = Router()
 
 client.get("/", authMiddleware, controller.getAll)
 client.post("/", authMiddleware, validateJoi(schemas.createClient), controller.create)
-client.put("/:id", validateJoi(schemas.createClient), controller.update)
+client.put("/:id", validateJoi(schemas.updateClient), controller.update)
 client.delete("/:id", controller.destroy)
 
 export default client;
