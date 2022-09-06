@@ -7,7 +7,6 @@ import MonthNavigator from './MonthNavigator';
 
 export default function Total() {
 	const {appointments, actualMonth} = useContext(AppointmentsContext);
-	console.log(appointments, actualMonth);
 
 	function calculateTotal() {
 		if (appointments && appointments[actualMonth.string]) {
