@@ -1,14 +1,14 @@
 import {Listbox} from '@headlessui/react';
 import {CaretDown} from 'phosphor-react';
 import React, {useContext} from 'react';
-import FormContext from '../context/FormContext';
+import CreateAppointmentContext from '../context/CreateAppointmentContext';
 
-export default function InstallmentsInput() {
-	const {
-		changeInstallments,
-		installments,
-	} = useContext(FormContext);
+type InstallmentsInputProps = {
+	changeInstallments: (number: number) => void;
+	installments: number | undefined;
+};
 
+export default function InstallmentsInput({installments, changeInstallments}: InstallmentsInputProps) {
 	return (
 		<Listbox value={installments} onChange={changeInstallments}>
 			<div className='relative w-1/3'>

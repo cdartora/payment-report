@@ -3,7 +3,7 @@ import {CheckCircle, DotsThreeVertical, NotePencil, TrashSimple, XCircle} from '
 import type {ChangeEvent, ReactEventHandler, RefObject} from 'react';
 import React, {useContext, useRef, useState} from 'react';
 import {useNavigate} from 'react-router';
-import FormContext from '../context/FormContext';
+import CreateAppointmentContext from '../context/CreateAppointmentContext';
 import AppointmentsContext from '../context/AppointmentsContext';
 import {deleteClient, updateClient} from '../services/api';
 import type {Client} from '../types/types';
@@ -15,7 +15,7 @@ type ClientProps = {
 
 export default function ClientLi({client}: ClientProps) {
 	const navigate = useNavigate();
-	const {getClients} = useContext(FormContext);
+	const {getClients} = useContext(CreateAppointmentContext);
 	const {getAppointments} = useContext(AppointmentsContext);
 	const [clientName, setClientName] = useState<string>('');
 	const [isEditMode, setIsEditMode] = useState<boolean>(false);

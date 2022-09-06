@@ -1,9 +1,13 @@
-import React, {useContext} from 'react';
-import FormContext from '../context/FormContext';
+import type {ChangeEvent} from 'react';
+import React from 'react';
+import CreateAppointmentContext from '../context/CreateAppointmentContext';
 
-export default function ValueInput() {
-	const {changeValue, value} = useContext(FormContext);
+type ValueInputProps = {
+	value: number | undefined;
+	changeValue: (value: ChangeEvent<HTMLInputElement>) => void;
+};
 
+export default function ValueInput({value, changeValue}: ValueInputProps) {
 	return (
 		<label
 			className='w-2/3'

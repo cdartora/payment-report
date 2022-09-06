@@ -3,6 +3,7 @@ import {Listbox} from '@headlessui/react';
 import {CaretDown, DotsThreeVertical} from 'phosphor-react';
 import type {Client} from '../types/types';
 import ClientLi from './ClientLi';
+import AddClientInput from './AddClientInput';
 
 type ListProps = {
 	clients: Client[] | undefined;
@@ -13,7 +14,7 @@ type ListProps = {
 export default function ClientInput({clients, client, changeClient}: ListProps) {
 	return (
 		<Listbox value={client} onChange={changeClient}>
-			<div className='relative mt-1 z-30'>
+			<div className='relative z-30'>
 				<Listbox.Button
 					className='rounded-md border bg-white shadow p-3 text-text flex justify-between w-full items-center'
 				>
@@ -33,6 +34,7 @@ export default function ClientInput({clients, client, changeClient}: ListProps) 
 
 						))
 					}
+					<AddClientInput />
 				</Listbox.Options>
 			</div>
 		</Listbox>
