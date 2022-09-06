@@ -3,9 +3,10 @@ import {useNavigate} from 'react-router-dom';
 import {getUser} from '../utils/utils';
 import Logo from '../images/logo.png';
 import {SignOut} from 'phosphor-react';
+import type {UserLocalStorage} from '../types/types';
 
 export default function Header() {
-	const user = getUser();
+	const user = getUser() as UserLocalStorage;
 	const navigate = useNavigate();
 
 	function logout() {
