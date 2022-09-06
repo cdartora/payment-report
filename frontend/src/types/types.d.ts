@@ -48,12 +48,25 @@ export type AppointmentContextType = {
 	actualMonth: {date: Date; string: string};
 };
 
-export type FormContextType = {
+export type CreateAppointmentContextType = {
 	changeValue: (event: ChangeEvent<HTMLInputElement>) => void;
 	validateCredentials: () => boolean;
 	changeInstallments: (value: number) => void;
 	changeClient: (value: Client) => void;
 	resetInputs: () => void;
+	clients: Client[] | undefined;
+	setClients: (Clients: Client[]) => void;
+	value: number | undefined;
+	installments: number | undefined;
+	client: Client | undefined;
+	getClients: (token: string) => Promise<void>;
+};
+
+export type EditAppointmentContextType = {
+	changeValue: (event: ChangeEvent<HTMLInputElement>) => void;
+	validateCredentials: () => boolean;
+	changeInstallments: (value: number) => void;
+	changeClient: (value: Client) => void;
 	clients: Client[] | undefined;
 	setClients: (Clients: Client[]) => void;
 	value: number | undefined;
