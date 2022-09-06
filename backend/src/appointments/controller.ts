@@ -1,30 +1,39 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import { StatusCodes } from "http-status-codes";
-import { Appointment } from "../types/user";
+import { Appointment, RequestWithUser } from "../types/user";
 import service from "./service";
 
-const getAll = async (_req: Request, res: Response) => {
-  const appointments = await service.getAll();
+const getAll = async (req: RequestWithUser, res: Response) => {
+  const userId = req.user?.id;
+  const appointments = await service.getAll(userId as string);
 
   res.status(StatusCodes.OK).send(appointments);
 }
 
-const create = async (req: Request, res: Response) => {
+const create = async (req: RequestWithUser, res: Response) => {
   const { body } = req;
-  await service.create(body as Appointment);
+  const userId = req.user?.id;
+
+  await service.create({ ...body, userId } as Appointment);
   res.status(StatusCodes.CREATED).send({ message: "created successfully" });
 }
 
-const update = async (req: Request, res: Response) => {
+const update = async (req: RequestWithUser, res: Response) => {
   const { id } = req.params;
   const { body } = req;
-  await service.update(body, id);
+  const userId = req.user?.id;
+
+  await service.update({ ...body, userId }, id);
   res.status(StatusCodes.OK).send({ message: "updated successfully" });
 }
 
-const destroy = async (req: Request, res: Response) => {
+const destroy = async (req: RequestWithUser, res: Response) => {
   const { id } = req.params;
-  await service.destroy(id);
+  const userId = req.user?.id;
+
+
+  await service.destroy(id, userId as string);
+
   res.status(StatusCodes.OK).send({ message: "deleted successfully" })
 }
 

@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
-  await prisma.user.create({
+  const erica = await prisma.user.create({
     data: {
       name: 'Érica',
       email: 'erica@mail.com',
@@ -10,7 +10,7 @@ async function main() {
     }
   });
 
-  await prisma.user.create({
+  const admin = await prisma.user.create({
     data: {
       name: 'Admin',
       email: 'admin@mail.com',
@@ -21,18 +21,23 @@ async function main() {
   const joao = await prisma.client.create({
     data: {
       name: 'João',
+      userId: erica.id
     }
   });
 
   const maria = await prisma.client.create({
     data: {
       name: 'Maria',
+      userId: admin.id
+
     }
   });
 
   const robson = await prisma.client.create({
     data: {
       name: 'Robson',
+      userId: erica.id
+
     }
   });
 
@@ -41,7 +46,9 @@ async function main() {
       clientId: joao.id,
       value: 1122.00,
       installments: 5,
-      isPaid: false
+      isPaid: false,
+      userId: erica.id
+
     }
   });
 
@@ -50,7 +57,9 @@ async function main() {
       clientId: maria.id,
       value: 5013.00,
       installments: 10,
-      isPaid: false
+      isPaid: false,
+      userId: admin.id
+
     }
   });
 
@@ -59,7 +68,9 @@ async function main() {
       clientId: robson.id,
       value: 502.00,
       installments: 3,
-      isPaid: false
+      isPaid: false,
+      userId: erica.id
+
     }
   });
 

@@ -1,3 +1,5 @@
+import { Request } from "express";
+
 export interface User {
   id: string;
   name: string;
@@ -12,9 +14,15 @@ export interface Appointment {
   installments: number;
   isPaid: boolean;
   createdAt: Date;
+  userId: string;
 }
 
 export interface Client {
   id: string;
   name: string;
+  userId: string;
+}
+
+export interface RequestWithUser extends Request {
+  user?: User;
 }

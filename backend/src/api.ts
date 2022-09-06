@@ -18,9 +18,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use("/login", login);
-app.use("/appointment", appointment);
 app.use("/user", user);
 app.use("/client", client);
+app.use("/appointment", appointment);
 
 app.use(errorMiddleware);
 

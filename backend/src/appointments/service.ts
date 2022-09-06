@@ -2,8 +2,9 @@ import { StatusCodes } from "http-status-codes";
 import { prisma } from "../prisma";
 import { Appointment } from "../types/user";
 import BaseError from "../utils/baseError";
+import appointment from "./route";
 
-const getAll = async () => {
+const getAll = async (userId: string) => {
   const appointments = await prisma.appointment.findMany({
     select: {
       id: true,
@@ -14,8 +15,10 @@ const getAll = async () => {
       createdAt: true,
       isPaid: true,
     },
+    where: {
+      userId,
+    }
   });
-  if (appointments.length === 0) throw BaseError(StatusCodes.NOT_FOUND, "no appointments found");
   return appointments;
 };
 
@@ -33,15 +36,27 @@ const create = async (appointment: Appointment) => {
   })
 }
 
+const validateUserId = async (appointmentId: string, userId: string) => {
+  const appointment = await prisma.appointment.findFirst({
+    where: { id: appointmentId }
+  });
+  if (!appointment) throw BaseError(StatusCodes.NOT_FOUND, "appointment not found");
+  if (appointment.userId !== userId) {
+    throw BaseError(StatusCodes.UNAUTHORIZED, "permission invalid");
+  }
+};
+
 const update = async (appointment: Appointment, id: string) => {
   await validateClient(appointment.clientId);
+  await validateUserId(id, appointment.userId)
   await prisma.appointment.update({
     where: { id },
     data: appointment,
   });
 }
 
-const destroy = async (id: string) => {
+const destroy = async (id: string, userId: string) => {
+  await validateUserId(id, userId)
   await prisma.appointment.delete({
     where: { id }
   });
