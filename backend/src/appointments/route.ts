@@ -8,7 +8,7 @@ const appointment = Router()
 
 appointment.get("/", authMiddleware, controller.getAll)
 appointment.post("/", authMiddleware, validateJoi(schemas.createAppointment), controller.create)
-appointment.put("/:id", validateJoi(schemas.createAppointment), controller.update)
+appointment.put("/:id", authMiddleware, validateJoi(schemas.createAppointment), controller.update)
 appointment.delete("/:id", controller.destroy)
 
 export default appointment;
