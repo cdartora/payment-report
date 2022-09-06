@@ -33,7 +33,6 @@ function AppointmentsProvider({children}: React.PropsWithChildren) {
 		const token = getToken();
 		if (token) {
 			const data = await requestAppointments('/appointment', token as string);
-			console.log(data);
 			readAppointments(data);
 		} else {
 			localStorage.setItem('user', '');
@@ -93,12 +92,8 @@ function AppointmentsProvider({children}: React.PropsWithChildren) {
 				payments[monthYear].push(parsedAppointment);
 
 				monthYear = getMonthYear(addMonth(initialMonth));
-				console.log(appointment);
-
-				console.log(monthYear);
 			}
 		});
-		console.log(payments);
 
 		setAppointments(payments);
 	}
