@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {requestLogin} from '../services/api';
 import {CircleNotch, WarningCircle} from 'phosphor-react';
+import Footer from '../components/Footer';
 
 export default function Login() {
 	const [password, setPassword] = useState<string>('');
@@ -119,6 +120,7 @@ export default function Login() {
 					</div>
 				</form>
 			</div>
+			<Footer />
 		</div >
 	);
 }

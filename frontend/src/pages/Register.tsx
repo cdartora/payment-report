@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import {requestLogin, requestRegister} from '../services/api';
 import {CircleNotch, WarningCircle} from 'phosphor-react';
 import type {AxiosError} from 'axios';
+import Footer from '../components/Footer';
 
 export default function Register() {
 	const [password, setPassword] = useState<string>('');
@@ -153,6 +154,7 @@ export default function Register() {
 					</div>
 				</form>
 			</div>
-		</div >
+			<Footer />
+		</div>
 	);
 }
