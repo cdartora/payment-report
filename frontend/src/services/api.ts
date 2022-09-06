@@ -3,8 +3,10 @@
 import axios from 'axios';
 import { Appointment, AppointmentBody, Client, LoginBody, RegisterBody, UserLocalStorage } from '../types/types';
 
+console.log(import.meta.env.VITE_API_URL);
+
 const api = axios.create({
-  baseURL: "http://localhost:3001"
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 export const requestLogin = async (endpoint: string, body: LoginBody): Promise<UserLocalStorage> => {
@@ -12,6 +14,7 @@ export const requestLogin = async (endpoint: string, body: LoginBody): Promise<U
   return data;
 };
 
+// todo
 // export const loginValidate = async (endpoint: string, token: string) => {
 
 // };
@@ -42,7 +45,7 @@ export const requestAppointments = async (endpoint: string, token: string): Prom
   return data;
 }
 
-export const updateAppointments = async (endpoint: string, body: Appointment, token: string) => {
+export const updateAppointments = async (endpoint: string, body: AppointmentBody, token: string) => {
   await api.put(endpoint, body, { headers: { authorization: token } })
 }
 
@@ -50,6 +53,6 @@ export const createAppointments = async (endpoint: string, body: AppointmentBody
   await api.post(endpoint, body, { headers: { authorization: token } })
 }
 
-export const deleteAppointments = async (endpoint: string, id: string, token: string) => {
-  await api.delete(`${endpoint}/${id}`, { headers: { authorization: token } })
+export const deleteAppointments = async (endpoint: string, token: string) => {
+  await api.delete(endpoint, { headers: { authorization: token } });
 }
