@@ -1,6 +1,12 @@
 # Payment Report
 ## _Sistema para gerenciar relatórios de pagamentos_
 
+<hr />
+
+<img src="/dashboard.png" />
+
+<hr />
+
 ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)![Express](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)
 
 Payment Report é um app web mobile-first criado para administrar os pagamentos de um consultório odontológico. Pensado em modernizar a rotina pagamentos sem dificutar a acessibilidade do usuário.
