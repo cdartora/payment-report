@@ -10,7 +10,7 @@ const login = async (req: Request, res: Response) => {
   return res.status(StatusCodes.OK).send(user)
 }
 
-const validate = async (req: Request, res: Response) => {
+const validate = async (_req: Request, res: Response) => {
   res.status(StatusCodes.OK).send({ message: "token validado" })
 };
 

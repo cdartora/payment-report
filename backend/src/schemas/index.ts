@@ -13,13 +13,13 @@ const createAppointment = Joi.object({
 });
 
 const createUser = Joi.object({
-  name: Joi.string().required(),
+  name: Joi.string().min(5).required(),
   email: Joi.string().email().required(),
-  password: Joi.string().required(),
+  password: Joi.string().min(6).required(),
 });
 
 const createClient = Joi.object({
-  name: Joi.string().required(),
+  name: Joi.string().min(5).required(),
 });
 
 const updateClient = Joi.object({
