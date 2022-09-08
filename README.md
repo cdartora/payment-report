@@ -13,7 +13,7 @@ Payment Report é um app web mobile-first criado para administrar os pagamentos 
 - Adicione e edite consultas de acordo com a necessidade;
 - Descubra qual o valor esperado para receber de pagamentos todo o mês.
 
-## Tecnologia
+## Tecnologias
 
 Payment Report utiliza projetos open source na sua construção:
 
