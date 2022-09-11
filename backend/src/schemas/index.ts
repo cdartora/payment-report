@@ -22,15 +22,9 @@ const createClient = Joi.object({
   name: Joi.string().min(5).required(),
 });
 
-const updateClient = Joi.object({
-  name: Joi.string().required(),
-  id: Joi.string().required(),
-});
-
 export default {
   login,
   createAppointment,
   createUser,
   createClient,
-  updateClient
 }
