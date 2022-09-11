@@ -14,6 +14,10 @@ export type Client = {
 	name: string;
 };
 
+export type UpdateClientBody = {
+	name: string;
+};
+
 export type Appointment = {
 	id: string;
 	client: Client;
