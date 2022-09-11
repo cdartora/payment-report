@@ -1,7 +1,7 @@
 
 /* eslint-disable */
 import axios from 'axios';
-import { Appointment, AppointmentBody, Client, LoginBody, RegisterBody, UserLocalStorage } from '../types/types';
+import { Appointment, AppointmentBody, Client, LoginBody, RegisterBody, UpdateClientBody, UserLocalStorage } from '../types/types';
 
 console.log(import.meta.env.VITE_API_URL);
 
@@ -36,7 +36,7 @@ export const deleteClient = async (endpoint: string, token: string) => {
   await api.delete(endpoint, { headers: { Authorization: token } });
 }
 
-export const updateClient = async (endpoint: string, body: Client, token: string) => {
+export const updateClient = async (endpoint: string, body: UpdateClientBody , token: string) => {
   await api.put(endpoint, body, { headers: { Authorization: token } });
 }
 

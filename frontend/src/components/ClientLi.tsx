@@ -32,7 +32,7 @@ export default function ClientLi({client}: ClientProps) {
 				changeEditMode();
 			}
 
-			await updateClient(`/client/${client.id}`, {id: client.id, name: clientName}, token as string);
+			await updateClient(`/client/${client.id}`, {name: clientName}, token as string);
 			await getClients(token as string);
 			await getAppointments();
 		} else {
