@@ -21,13 +21,14 @@ const validateUserId = async (clientId: string, userId: string) => {
     where: { id: clientId }
   });
   if (!client) throw BaseError(StatusCodes.NOT_FOUND, "client not found");
+
   if (client.userId !== userId) {
     throw BaseError(StatusCodes.UNAUTHORIZED, "permission invalid");
   }
 };
 
 const update = async (client: Client, id: string) => {
-  await validateUserId(client.userId, id);
+  await validateUserId(id, client.userId);
   await prisma.client.update({
     where: { id },
     data: client,
@@ -35,7 +36,7 @@ const update = async (client: Client, id: string) => {
 }
 
 const destroy = async (id: string, userId: string) => {
-  await validateUserId(id, userId)
+  await validateUserId(id, userId);
   await prisma.appointment.deleteMany({
     where: { clientId: id }
   })
