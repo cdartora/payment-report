@@ -10,26 +10,27 @@ import { expect } from 'chai';
 
 chai.use(chaiHttp);
 
-describe.only('Rota de User', async () => {
+before(async () => {
+  await prisma.user.create({
+    data: {
+      name: 'Érica',
+      email: 'erica@mail.com',
+      password: '$2a$12$cEoKxFeC89HFIoTFZXao/uo3RV7FOnPiMsV2kJxHEQ89fQQZ8bORi' // secret_admin
+    }
+  });
+
+  console.log('Érica cadastrada com sucesso!');
+});
+
+after(async () => {
+  const deleteUser = prisma.user.deleteMany();
+  await prisma.$transaction([deleteUser]);
+  await prisma.$disconnect();
+});
+
+describe('Rota de User', async () => {
 
   describe(('POST /user'), async () => {
-    beforeEach(async () => {
-      await prisma.user.create({
-        data: {
-          name: 'Érica',
-          email: 'erica@mail.com',
-          password: '$2a$12$cEoKxFeC89HFIoTFZXao/uo3RV7FOnPiMsV2kJxHEQ89fQQZ8bORi' // secret_admin
-        }
-      });
-
-      console.log('Érica cadastrada com sucesso!');
-    });
-
-    afterEach(async () => {
-      const deleteUser = prisma.user.deleteMany();
-      await prisma.$transaction([deleteUser]);
-      await prisma.$disconnect();
-    });
 
     it('consegue registrar um usuário com sucesso', async () => {
       const response = await chai.request(app).post("/user").send({

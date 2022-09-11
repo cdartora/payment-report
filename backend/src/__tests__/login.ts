@@ -10,26 +10,27 @@ import { expect } from 'chai';
 
 chai.use(chaiHttp);
 
+before(async () => {
+  await prisma.user.create({
+    data: {
+      name: 'Érica',
+      email: 'erica@mail.com',
+      password: '$2a$12$cEoKxFeC89HFIoTFZXao/uo3RV7FOnPiMsV2kJxHEQ89fQQZ8bORi' // secret_admin
+    }
+  });
+
+  console.log('Érica cadastrada com sucesso!');
+});
+
+after(async () => {
+  const deleteUser = prisma.user.deleteMany();
+  await prisma.$transaction([deleteUser]);
+  await prisma.$disconnect();
+});
+
 describe('Rota de Login', async () => {
 
   describe(('POST /login'), async () => {
-    beforeEach(async () => {
-      await prisma.user.create({
-        data: {
-          name: 'Érica',
-          email: 'erica@mail.com',
-          password: '$2a$12$cEoKxFeC89HFIoTFZXao/uo3RV7FOnPiMsV2kJxHEQ89fQQZ8bORi' // secret_admin
-        }
-      });
-
-      console.log('Érica cadastrada com sucesso!');
-    });
-
-    afterEach(async () => {
-      const deleteUser = prisma.user.deleteMany();
-      await prisma.$transaction([deleteUser]);
-      await prisma.$disconnect();
-    });
 
     it('consegue fazer login com sucesso', async () => {
       const response = await chai.request(app).post("/login").send({
@@ -81,9 +82,6 @@ describe('Rota de Login', async () => {
       const response = await chai.request(app).post("/login").send({
         email: "erica@mail.com",
       });
-
-      console.log(response.body);
-
 
       expect(response.status).to.eq(400);
       expect(response.body).haveOwnProperty("message");
