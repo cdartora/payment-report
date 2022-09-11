@@ -14,18 +14,13 @@ describe('Rota de Login', async () => {
 
   describe(('POST /login'), async () => {
     beforeEach(async () => {
-      try {
-        await prisma.user.create({
-          data: {
-            name: 'Érica',
-            email: 'erica@mail.com',
-            password: '$2a$12$cEoKxFeC89HFIoTFZXao/uo3RV7FOnPiMsV2kJxHEQ89fQQZ8bORi' // secret_admin
-          }
-        });
-      } catch (err: unknown) {
-        console.log(err);
-
-      }
+      await prisma.user.create({
+        data: {
+          name: 'Érica',
+          email: 'erica@mail.com',
+          password: '$2a$12$cEoKxFeC89HFIoTFZXao/uo3RV7FOnPiMsV2kJxHEQ89fQQZ8bORi' // secret_admin
+        }
+      });
 
       console.log('Érica cadastrada com sucesso!');
     });
