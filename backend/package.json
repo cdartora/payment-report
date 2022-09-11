@@ -6,7 +6,7 @@
   "scripts": {
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
-    "test": "npm run docker:up && dotenv -e .env.test -- prisma migrate deploy && dotenv -e .env.test -- env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register src/__tests__/**/*.ts",
+    "test": "npm run docker:up && dotenv -e .env.test -- prisma migrate deploy && dotenv -e .env.test -- env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register src/__tests__/**",
     "start": "node build/server.js",
     "prestart": "npm run build",
     "dev": "nodemon --watch \"./src/**\" ./src/server.ts",
